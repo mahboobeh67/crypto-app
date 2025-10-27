@@ -43,6 +43,7 @@ const TableRow = ({
     price_change_percentage_24h: price_change,
     current_price,
   },
+  
 }) => {
   const safeChange = price_change ?? 0;
   const isPositive = safeChange > 0;
