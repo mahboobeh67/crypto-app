@@ -1,7 +1,7 @@
 import chart_up from "../../assets/chart-up.svg";
 import chart_down from "../../assets/chart-down.svg";
 import { DNA } from "react-loader-spinner";
-import styles from "./TableCoins.module.css"
+import styles from "./TableCoins.module.css";
 function TableCoins({ coins, isLoading }) {
   return (
     <div className={styles.container}>
@@ -44,7 +44,6 @@ const TableRow = ({
     current_price,
   },
 }) => {
-  
   const safeChange = price_change ?? 0;
   const isPositive = safeChange > 0;
 
@@ -52,7 +51,7 @@ const TableRow = ({
     <tr>
       <td>
         <div className={styles.symbol}>
-          <img src={image} alt={name}  />
+          <img src={image} alt={name} />
           <span>{symbol.toUpperCase()}</span>
         </div>
       </td>
@@ -63,13 +62,8 @@ const TableRow = ({
       </td>
       <td>{total_volume.toLocaleString()}</td>
       <td>
-        <img
-          src={isPositive ? chart_up : chart_down}
-          alt="trend"
-          
-        />
+        <img src={isPositive ? chart_up : chart_down} alt="trend" />
       </td>
     </tr>
   );
 };
-
