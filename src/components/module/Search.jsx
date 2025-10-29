@@ -64,24 +64,29 @@ function Search({ currency, setCurrency }) {
         <option value="jpy">JPY</option>
       </select>
 
-      <div className={styles.searchResult}>
-        {isLoading && (
-          <div >
-            <DnaLoader width={70} height={70} strokeWidth={2} />
-          </div>
-        )}
+      {(!!coin.length || isLoading) && (
+        <div className={styles.searchResult}>
+          {isLoading && (
+            <div>
+              <DnaLoader width={70} height={70} strokeWidth={2} />
+            </div>
+          )}
 
-        {!isLoading && coin.length > 0 && (
-          <ul>
-            {coin.map((c) => (
-              <li key={c.id} style={{ display: "flex", alignItems: "center" }}>
-                <img src={c.thumb} alt={c.name} style={{ marginRight: 8 }} />
-                <p>{c.name}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+          {!isLoading && coin.length > 0 && (
+            <ul>
+              {coin.map((c) => (
+                <li
+                  key={c.id}
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <img src={c.thumb} alt={c.name} style={{ marginRight: 8 }} />
+                  <p>{c.name}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </div>
   );
 }
