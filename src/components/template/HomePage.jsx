@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TableCoins from "../module/TableCoins.jsx";
-import { getCoinList, marketChart } from "../../services/cryptoApi.js";
+import { getCoinList} from "../../services/cryptoApi.js";
 import Pagination from "../module/Pagination.jsx";
 import Search from "../module/Search.jsx";
 import Chart from "../module/Chart.jsx";

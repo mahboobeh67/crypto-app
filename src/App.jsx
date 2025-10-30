@@ -1,14 +1,12 @@
-import HomePage from "./components/template/HomePage"
-
+import HomePage from "./components/template/HomePage";
+import Layout from "./layouts/Layout";
 
 function App() {
- 
-
   return (
-   
-    <HomePage />
-  
-  )
+    <Layout>
+      <HomePage />
+    </Layout>
+  );
 }
 
-export default App
+export default App;

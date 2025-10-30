@@ -5,24 +5,13 @@
   width: 100%;
   height: 100%;
   backdrop-filter: blur(3px);
+  align-items: flex-start;
  
 }
-.cross {
-  display: inline-block;
-  font-size: 1.2rem;
-  font-weight: 700;
-  background-color: #d35636;
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  margin: 30px 0 0 30px;
-  border-radius: 5px;
-  cursor: pointer;
-}
 .chart {
+  position: relative;
   width: 800px;
-  height: 400px;
+  height: auto;
   margin: auto;
   padding: 20px;
   margin-top: 50px;
@@ -30,7 +19,78 @@
   border: 2px solid #404042;
   border-radius: 20px;
 }
+.cross {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #d35636;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin: 30px 0 0 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+.cross:hover {
+  background-color: #b94424;
+  transform: scale(1.05);
+}
+
 .graph {
   width: 760px;
   height: 300px;
+}
+.name{
+  display: flex;
+  align-items: center;
+  margin: 0 10px 30px;
+}
+.name img{
+width:40px;
+height: 40px;
+margin-right: 20px;
+}
+.name p{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.type{
+  margin-top: 30px;
+}
+.type button{
+  margin: 10px 20px;
+  background-color: #18181cbd;
+  border: 1px solid #387aff;
+  color: #3874ff;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.type .selected{
+  background-color: #3874ff;
+  color: #fff;
+}
+.details{
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 20px 0;
+}
+.details div{
+  display: flex;
+  font-size: 1.1rem;
+}
+.details p{ 
+  margin-right: 7px;
+  color: #3874ff;
+  font-weight: 700;
 }

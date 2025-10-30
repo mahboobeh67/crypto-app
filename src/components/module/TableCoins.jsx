@@ -24,8 +24,8 @@ function TableCoins({ coins, isLoading, setChart, currency }) {
           <tbody>
             {coins.map((coin) => (
               <TableRow
-                coin={coin}
                 key={coin.id}
+                coin={coin}
                 setChart={setChart}
                 currency={currency}
               />
@@ -39,6 +39,7 @@ function TableCoins({ coins, isLoading, setChart, currency }) {
 
 export default TableCoins;
 
+// 🧩 TableRow: نمایش هر کوین با فرمت ارزی درست
 const TableRow = ({ coin, setChart, currency }) => {
   const {
     id,
@@ -49,15 +50,30 @@ const TableRow = ({ coin, setChart, currency }) => {
     price_change_percentage_24h,
     current_price,
   } = coin;
+
   const safeChange = price_change_percentage_24h ?? 0;
   const isPositive = safeChange > 0;
 
+  // تابع هوشمند برای فرمت ارز براساس ارز انتخاب‌شده
+  const formatCurrency = (num) => {
+    try {
+      return num.toLocaleString(undefined, {
+        style: "currency",
+        currency: currency.toUpperCase(),
+      });
+    } catch {
+      // اگر مرورگر ارز خاصی رو نشناسه، بدون علامت نشون بده
+      return num.toLocaleString();
+    }
+  };
+
+  // هندل کلیک روی نماد برای نمایش چارت
   const showHandler = async () => {
     try {
-      const res = await fetch(marketChart(id, currency)); // ✅ currency اضافه شد
-      const json = await res.json(); // ✅ await اضافه شد
-      console.log("✅ Chart data:", json);
-      setChart({ ...json, coin: coin });
+      const res = await fetch(marketChart(id, currency));
+      const json = await res.json();
+      console.log("✅ Chart Data:", json);
+      setChart({ ...json, coin });
     } catch (error) {
       console.error("❌ chart fetch error:", error);
       setChart(null);
@@ -73,13 +89,21 @@ const TableRow = ({ coin, setChart, currency }) => {
         </div>
       </td>
       <td>{name}</td>
-      <td>${current_price.toLocaleString()}</td>
-      <td className={safeChange > 0 ? styles.success : styles.error}>
+
+      {/* ✅ فرمت عدد ارزی بر اساس انتخاب کاربر */}
+      <td>{formatCurrency(current_price)}</td>
+
+      <td className={isPositive ? styles.success : styles.error}>
         {safeChange.toFixed(2)}%
       </td>
-      <td>{total_volume.toLocaleString()}</td>
+
+      <td>{formatCurrency(total_volume)}</td>
+
       <td>
-        <img src={isPositive ? chart_up : chart_down} alt="trend" />
+        <img
+          src={isPositive ? chart_up : chart_down}
+          alt={isPositive ? "up trend" : "down trend"}
+        />
       </td>
     </tr>
   );
